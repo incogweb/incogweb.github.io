@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuminOS</title>
-    <link rel="stylesheet" href="dance.css">
+    <title>Oscar's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import 'keyframe.css';
-
         * {
             margin: 0;
             padding: 0;
@@ -15,21 +13,62 @@
         }
 
         body {
-            padding-left: 15px;
-            background: #f9f9f9 url('subtle_dots.png') repeat;
-            color: #222;
-            font: 15px/24px "Bitstream Vera Sans Mono", "Anonymous Pro", "Consolas", monospace;
-            text-shadow: 0 1px 1px rgba(0,0,0,.25);
-            letter-spacing: -0.01em;
+            background: black;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navigation {
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Full height of the viewport */
+            justify-content: center; /* Center the navigation bar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px 0;
+        }
+
+        .navigation ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px; /* Space between navigation items */
+        }
+
+        .navigation a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #ccc;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Typewriter Section */
+        .typewriter-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            text-align: center;
+            z-index: 1; /* Ensure text is above the canvas */
+            padding: 0 20px; /* Add padding to prevent text from touching edges */
         }
 
         ul.content {
             list-style: none;
-            width: 500px;
+            width: 100%;
+            max-width: 800px; /* Limit width for better readability */
+            padding: 0 20px; /* Add padding for smaller screens */
         }
 
         ul li {
@@ -37,22 +76,20 @@
         }
 
         #first-line {
-            font-size: 22px;
+            font-size: 32px; /* Larger font size for the heading */
+            font-weight: bold; /* Make it bold */
+            margin-bottom: 20px; /* Add some spacing */
         }
 
         a {
             text-decoration: none;
-            color: #111;
+            color: #fff;
             font-weight: bold;
             border-bottom: 1px dotted #ccc;
-            background: #111;
-            color: #fff;
         }
 
         a:hover {
-            background: #ffffff;
-            color: #fff;
-            color: #111;
+            color: #ccc;
         }
 
         .typing {
@@ -61,85 +98,219 @@
             width: 8px;
             text-indent: -999em;
             background: #ccc;
-            -webkit-animation: flick 1s infinite;
-            -moz-animation: flick 1s infinite;
-            -ms-animation: flick 1s infinite;
-            -o-animation: flick 1s infinite;
             animation: flick 1s infinite;
         }
 
-        .arrow {
-            background: url('arrow.png') no-repeat;
-            width: 235px;
-            height: 110px;
-            top: 40%;
-            margin-top: 195px;
-            position: absolute;
-            left: -108px;
-            -webkit-animation: arrow 35s 1;
-            -moz-animation: arrow 35s 1;
-            -ms-animation: arrow 35s 1;
-            -o-animation: arrow 35s 1;
-            animation: arrow 35s 1;
+        @keyframes flick {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Scrollable Content Sections */
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+            background: rgba(52, 52, 52, 0.2); /* Lighter, more modern background */
+            margin: 20px auto; /* Center sections horizontally */
+            border-radius: 10px; /* Smoother corners */
+            max-width: 800px; /* Slimmer sections */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Star Background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure canvas is behind everything */
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <ul class="content">
-        <li id="first-line" class="dollar">Welcome to <strong>LuminOS™</strong><br></li>
-        <li id="second-line" class="dollar">You are about to experience the beta version of Lite Operating System™ (version 1.1.0). LuminOS™ is designed to be a clean system perfect for old devices incapable of updates or anyone who wants to experience <strong>total</strong> comfort from within their screens<br></li>
-        <li class="dollar"></li>
-        <li class="dollar">LuminOS™ is designed by <strong><a href="https://github.com/incogweb" target="_blank">incogweb</a></strong>. Enjoy the experience</li>
-        <li class="dollar"> <a href="luminos.html">Click here to launch LuminOS™</a> <span class="typing">|</span></li>
-    </ul>
-    <script src="fun.js"></script>
+    <!-- Navigation Bar -->
+    <nav class="navigation">
+        <ul>
+            <li><a href="#typewriter">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Typewriter Section -->
+    <section id="typewriter" class="typewriter-section">
+        <ul class="content">
+            <li id="first-line" class="dollar">Welcome to <strong>Oscar's Portfolio</strong><br></li>
+            <li id="second-line" class="dollar"></li>
+            <li class="dollar">This website was designed by none other then myself.</li>
+            <li class="dollar"> <a href="https://github.com/incogweb">Click here to visit my GitHub</a> <span class="typing">|</span></li>
+        </ul>
+    </section>
+
+    <!-- Scrollable Content Sections -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>👋 Hello, I'm Oscar! </br> 
+        I’m a teenager interested in web development, graphic design, programming, and electronics. I've been coding since I was 8 (though back then it was with Scratch) but have been using more proffesional coding languages since I was 10 and made my own website using the typical HTML, CSS, and JS. </br></br>
+        I love coding and graphic design because they're both ways for me to construct the ideas that come to my mind. Since I can remember I've had these ideas, whether that's an app or buisness concept, and so I've always wanted a way to really <strong>build</strong> them, and so I found hobbies that allow me to. </br></br>
+        Now though, I'm more interesting in: </br></br>Incorporating my code into something physical (such as building my own mini robots with the Raspberry Pi) aswell as testing the limits and security of various devices (currently with my M5StickC PLUS2).
+        </br><strong>And</strong> using my graphic design skills to create product ads or buisness logos proffesionally for anyone that needs them (though that's currently only my friends).</p>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Current Projects</h2>
+        <p>Here are some of the projects I'm working on now:</p>
+        <ul>
+            <li>Self hosted web services using Raspberry PIs</li>
+            <li>Building my own full private Cyberdeck</li>
+            <li>Experimenting with IoT devices, and diving into cybersecurity concepts</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Past Projects</h2>
+        <p>Here are some of the projects I've worked on in the past:</p>
+        <ul>
+            <li>Developing my own iOS app</li>
+            <li>Coding a web-app to make e-reading faster</li>
+            <li>Building logos and product ads for buisnesses ran by my fellow students</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me here:</p>
+        <ul>
+            <li>Instagram: <a href="https://instagram.com/oscarnlx" target="_blank">@oscarnlx</a></li>
+            <li>GitHub: <a href="https://github.com/incogweb" target="_blank">@incogweb</a></li>
+        </ul>
+    </section>
+
+    <!-- Star Background Canvas -->
+    <canvas id="starCanvas"></canvas>
+
     <script>
+        // --- Star Animation with Canvas ---
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = [];
+        const numStars = 600;
+        let lastScrollY = window.scrollY;
+
+        function createStar() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                baseY: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                depth: Math.random() * 5 + 1,
+                speed: Math.random() * 2 + 0.5,
+                opacity: Math.random()
+            };
+        }
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push(createStar());
+        }
+
+        function drawStars(scrollY) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let scrollDirection = scrollY > lastScrollY ? 1 : -1;
+
+            stars.forEach((star, index) => {
+                let parallaxY = star.baseY + scrollDirection * Math.sin(scrollY * 0.009 + index) * star.depth * 5;
+                ctx.beginPath();
+                ctx.arc(star.x, parallaxY, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            });
+
+            lastScrollY = scrollY;
+        }
+
+        function animateStars() {
+            for (let star of stars) {
+                star.opacity += (Math.random() - 0.5) * 0.02;
+                if (star.opacity < 0.1) star.opacity = 0.1;
+                if (star.opacity > 1) star.opacity = 1;
+            }
+        }
+
+        function animateCanvas() {
+            drawStars(window.scrollY);
+            animateStars();
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push(createStar());
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            drawStars(window.scrollY);
+        });
+
+        animateCanvas();
+
+        // --- Typewriter Effect ---
         (function(doc, win) {
-            //  If you don't have QSA, you must hate me
-            if(!doc.querySelector) {
-                return alert('Your browser sucks. Sorry.');
+            if (!doc.querySelector) {
+                return alert('Your browser does not support querySelector.');
             }
 
-            //  I never node her that well, Officer.
-            var list = doc.querySelector('ul'),
+            var list = doc.querySelector('ul.content'),
                 all = list.children,
                 i = all.length,
                 html = [];
 
-            //  Censorship, yo
-            while(i--) {
+            while (i--) {
                 html[i] = all[i].innerHTML;
                 all[i].innerHTML = '';
             }
 
-            //  Go all Frankenstein and shit
             var animate = function(i) {
                 var me = all[i],
-
                     add = 'dollar',
-
-                    //  C = character delay
-                    //  D = line delay
                     c = 0, d = 0;
 
-                //  Censor the page
                 me.className = add;
-                list.style.marginTop = '-' + (((i + 1) * 25) / 2) + 'px';
+                list.style.marginTop = '-' + ((i + 1) * 25) / 2 + 'px';
 
                 var inty = setInterval(function() {
-                    //  MOAR TEXTS
                     me.innerHTML = html[i].substr(0, c) + '<span class="typing">|</span>';
-
-                    //  What's the best programming language in the world?
-                    //  Not this one.
                     c++;
 
-                    if(html[i].length < c) {
+                    if (html[i].length < c) {
                         clearInterval(inty);
                         i++;
 
-
-                        if(all[i]) {
+                        if (all[i]) {
                             setTimeout(function() {
                                 me.innerHTML = html[i - 1];
                                 animate(i);
@@ -150,49 +321,7 @@
             };
 
             animate(0);
-
-            //  Totally not easter egg stuff
-            var t = [77, 69, 79, 87], d = [], r = function(m,a) {
-                return Math.floor(Math.random() * 100) + (m-a)+a;
-            };
-            var s = function() {
-                if(!window.atob) return false;
-
-                var u = atob('aHR0cDovL3BsYWNla2l0dGVuLmNvbS8=') + r(2e2,4e2) + '/' + r(1e2,6e2);
-                var i = doc.createElement(atob('aW1n'));
-                i.src = u; i.setAttribute('style', 'position: absolute; left: ' + r(0,100) + '%; top: ' + r(0,100) + '%;');
-                doc.body.appendChild(i);
-            };
-            window.onkeyup = function(e) {
-                if(t.equals(d)) {
-                    return s();
-                }
-
-                if(d.length==+!0 && d[0]!=t[0]) d=[];
-                e.which && d.push(e.which);
-            };
         })(document, window);
-
-        //  It's like Go Compare, but without the opera singer
-        Array.prototype.equals = function(arr) {
-            //  If it's too long, it's not the right, uh.. Something that's not a penis joke
-            if(this.length != arr.length) {
-                return false;
-            }
-
-            for(var i = 0; i < arr.length; i++) {
-                //  RECURSION MOTHERFUCKER DO YOU UNDERSTAND IT?
-                if(this[i].compareArrays) {
-                    if(!this[i].compareArrays(arr[i])) {
-                        return false;
-                    }
-                }
-                if(this[i] != arr[i]) {
-                    return false;
-                }
-            }
-            return true;
-        }
     </script>
 </body>
 </html>
