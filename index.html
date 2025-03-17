@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adjust the viewport to scale down slightly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9, user-scalable=yes">
     <title>Oscar's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -140,6 +141,39 @@
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .navigation a {
+                font-size: 16px; /* Slightly smaller font for mobile */
+                padding: 8px 16px; /* Smaller padding for mobile */
+            }
+
+            .typewriter-section {
+                padding: 0 10px; /* Less padding on mobile */
+            }
+
+            ul.content {
+                max-width: 90%; /* Allow more space on mobile */
+            }
+
+            #first-line {
+                font-size: 28px; /* Slightly smaller heading on mobile */
+            }
+
+            .section {
+                padding: 60px 10px; /* Less padding on mobile */
+                max-width: 90%; /* Allow more space on mobile */
+            }
+
+            .section h2 {
+                font-size: 1.8rem; /* Slightly smaller heading on mobile */
+            }
+
+            .section p {
+                font-size: 1rem; /* Slightly smaller text on mobile */
+            }
         }
     </style>
 </head>
