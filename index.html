@@ -1,1 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.85, user-scalable=no">
+    <title>Oscar's Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
 
+        body {
+            background: black;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navigation {
+            display: flex;
+            justify-content: center; /* Center the navigation bar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px 0;
+        }
+
+        .navigation ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px; /* Space between navigation items */
+        }
+
+        .navigation a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #ccc;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* header Section */
+        .header-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            text-align: center;
+            z-index: 1; /* Ensure text is above the canvas */
+            padding: 0 20px; /* Add padding to prevent text from touching edges */
+            flex-direction: column; /* Stack the image and text */
+        }
+
+        /* Profile Image Styling */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover; /* Ensure image fills the circle */
+            margin-bottom: 20px; /* Space between the image and the text */
+        }
+
+        ul.content {
+            list-style: none;
+            width: 100%;
+            max-width: 800px; /* Limit width for better readability */
+            padding: 0 20px; /* Add padding for smaller screens */
+        }
+
+        ul li {
+            padding: 10px 0;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .project-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-item p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        #first-line {
+            font-size: 32px; /* Larger font size for the heading */
+            font-weight: bold; /* Make it bold */
+            margin-bottom: 20px; /* Add some spacing */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        a:hover {
+            color: #ccc;
+        }
+
+        .typing {
+            position: relative;
+            display: inline-block;
+            width: 8px;
+            text-indent: -999em;
+            background: #ccc;
+            animation: flick 1s infinite;
+        }
+
+        @keyframes flick {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Scrollable Content Sections */
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+            background: rgba(52, 52, 52, 0.2); /* Lighter, more modern background */
+            margin: 20px auto; /* Center sections horizontally */
+            border-radius: 10px; /* Smoother corners */
+            max-width: 800px; /* Slimmer sections */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Star Background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure canvas is behind everything */
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+
+            .footer-container {
+                gap: 20px; /* Reduce the gap between rows on mobile */
+                padding: 0 10px; /* Add padding to the sides of the footer container */
+            }
+
+            .menu ul li {
+                margin-bottom: 4px; /* Adjust spacing between links */
+            }
+
+             .menu:first-child ul li:nth-child(3) {
+                margin-bottom: 8px; /* Adjust the gap between Colophon and CO2 section */
+            }   
+            
+            .navigation a {
+                font-size: 16px; /* Slightly smaller font for mobile */
+                padding: 8px 16px; /* Smaller padding for mobile */
+            }
+
+            .header-section {
+                padding: 0 10px; /* Less padding on mobile */
+            }
+
+            ul.content {
+                max-width: 90%; /* Allow more space on mobile */
+            }
+
+            #first-line {
+                font-size: 28px; /* Slightly smaller heading on mobile */
+            }
+
+            .section {
+                padding: 60px 10px; /* Less padding on mobile */
+                max-width: 90%; /* Allow more space on mobile */
+            }
+
+            .section h2 {
+                font-size: 1.8rem; /* Slightly smaller heading on mobile */
+            }
+
+            .section p {
+                font-size: 1rem; /* Slightly smaller text on mobile */
+            }
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+            gap: 40px;
+            font-family: 'Inter', sans-serif;
+        }
+        .menu {
+            text-align: left; /* Aligns text within each column to the left */
+        }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .menu ul li {
+            margin-bottom: 6px; /* Default spacing */
+        }
+        .menu ul li:not(:first-child) {
+            margin-bottom: 4px; /* Reduce spacing for links in Explore and Connect sections */
+        }
+        .menu:first-child ul li:nth-child(3) {
+            margin-bottom: 12px; /* Increase gap between Colophon and CO2 section */
+        }
+        .bold {
+            font-weight: 600;
+        }
+        .footer a {
+            text-decoration: none;
+            color: white;
+            font-weight: 400;
+        }
+        .footer a.bold {
+            font-weight: 600;
+        }
+        .inline-img {
+            height: 1em; /* Match icon height to text */
+            vertical-align: middle;
+        }
+        .footer-link {
+        border-bottom: 2px solid #bbb;
+        transition: border-color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+        border-bottom: 2px solid white;
+        }
+
+        /* Colophon Popup Close Button - Modern Style */
+        #colophonPopup button {
+         border-radius: 25px; /* Round the button */
+        padding: 12px 24px; /* Make the button bigger */
+        background-color: #fff; /* White background */
+        color: black; /* Black text color */
+        font-size: 16px; /* Slightly larger font size */
+        border: none; /* Remove border */
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+        }
+
+        #colophonPopup button:hover {
+        background-color: #f0f0f0; /* Lighter background on hover */
+        transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navigation">
+        <ul>
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- header Section -->
+    <section id="header" class="header-section">
+        <img src="profile.jpg" alt="Oscar's Profile Picture" class="profile-img">
+        <ul class="content">
+            <li id="first-line" class="dollar">Welcome to </br> <strong>Oscar's Portfolio</strong><br></li>
+            <li id="second-line" class="dollar"></li>
+            <li class="dollar">This website was designed by none other then myself.</li>
+            <li class="dollar"> <a href="https://github.com/incogweb">Click here to visit my GitHub</a> <span class="typing">|</span></li>
+        </ul>
+    </section>
+
+    <!-- Scrollable Content Sections -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>👋 Hello, I'm Oscar! </br> 
+        I’m a teenager interested in web development, graphic design, programming, and electronics. I've been coding since I was 8 (though back then it was with Scratch) but have been using more proffesional coding languages since I was 10 and made my own website using the typical HTML, CSS, and JS. </br></br>
+        I love coding and graphic design because they're both ways for me to construct the ideas that come to my mind. Since I can remember I've had these ideas, whether that's an app or buisness concept, and so I've always wanted a way to really <strong>build</strong> them, and so I found hobbies that allow me to. </br></br>
+        Now though, I'm more interesting in: </br></br>Incorporating my code into something physical (such as building my own mini robots with the Raspberry Pi) aswell as testing the limits and security of various devices (currently with my M5StickC PLUS2).
+        </br><strong>And</strong> using my graphic design skills to create product ads or buisness logos proffesionally for anyone that needs them (though that's currently only my friends).</p>
+    </section>
+
+    <section id="past-projects" class="section">
+        <h2>Past Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <h3>iOS App Development</h3>
+                <p>I've worked on developing my own iOS app using Swift frameworks.</p>
+            </div>
+            <div class="project-item">
+                <h3>E-Reading Web App</h3>
+                <p>I coded a web-app to make e-reading faster.</p>
+            </div>
+            <div class="project-item">
+                <h3>Graphic Design for Businesses</h3>
+                <p>I've designed logos and product ads for businesses run by fellow students.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" class="section">
+        <h2>Current Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <h3>Self-Hosted Web Services</h3>
+                <p>I'm currently using Raspberry Pis to host web apps and services, aswell as Discord bots programmed for spceific tasks.</p>
+            </div>
+            <div class="project-item">
+                <h3>Private Cyberdeck</h3>
+                <p>I'm building a fully private Cyberdeck for personal use, structured within a ToolBox.</p>
+            </div>
+            <div class="project-item">
+                <h3>IoT & Cybersecurity</h3>
+                <p>I am experimenting with IoT devices and cybersecurity concepts.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="future-projects" class="section">
+        <h2>Future Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <h3>AI-Powered Automation</h3>
+                <p>Planning to integrate AI for automating various personal and professional tasks.</p>
+            </div>
+            <div class="project-item">
+                <h3>Advanced Robotics</h3>
+                <p>Exploring robotics with Raspberry Pi and Arduino for custom-built solutions.</p>
+            </div>
+            <div class="project-item">
+                <h3>Decentralized Web Projects</h3>
+                <p>Interested in creating self-sustaining, decentralized online applications.</p>
+            </div>
+        </div>
+    </section>
+
+        <footer id="footer" class="footer" style="margin-bottom: 4rem; font-family: 'Inter', sans-serif;">
+            <div class="footer-container" style="gap: 50px;"> <!-- Increased gap between rows -->
+                <nav class="menu">
+                    <ul>
+                        <li style="margin-bottom: 1rem;"><a href="https://incogweb.github.io" style="border-bottom: none;" class="bold">incogweb.github.io</a></li>
+                        <li> <a href="https://github.com/incogweb" target="blank" class="footer-link">Github</a> </li>
+                        <li> <a onclick="openColophonPopup()" class="footer-link">Colophon</a> </li>
+                        <li> <a href=""><br></a> </li>
+                        <li> <a class="footer-link" href="https://www.websitecarbon.com/website/incogweb-github-io/" target="blank">0.01 g CO2 per visit <img src="post.svg" class="inline-img" alt="Blog post icon"></a></li>
+                    </ul>   
+                </nav>
+        
+                <nav class="menu">
+                    <ul>
+                        <li><p class="bold" style="margin-bottom: 1rem;">Connect</p></li>
+                        <li><a href="https://instagram.com/oscarnlx" target="blank" class="footer-link">Instagram <img src="post.svg" class="inline-img" alt="Link icon"></a></li>
+                        <li><a href="https://www.youtube.com/" target="blank" class="footer-link">YouTube <img src="post.svg" class="inline-img" alt="Link icon"></a></li>
+                        <li><a href="https://read.cv/" target="blank" class="footer-link">read.cv <img src="post.svg" class="inline-img" alt="Link icon"></a></li>
+                        <li><a href="https://literal.club/" target="blank" class="footer-link">Literal <img src="post.svg" class="inline-img" alt="Link icon"></a></li>
+                    </ul>
+                </nav>
+
+                <nav class="menu">
+                    <ul>
+                        <li><p class="bold" style="margin-bottom: 1rem;">Explore</p></li>
+                        <li><a href="#header" class="footer-link">Home</a></li>
+                        <li><a href="#about" class="footer-link">About</a></li>
+                        <li><a href="#projects" class="footer-link">Projects</a></li>
+                        
+                    </ul>
+                </nav>
+        
+            
+            </div> 
+        </footer>
+        
+        <div id="colophonPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(123, 123, 123, 0.9); color: white; padding: 20px; border-radius: 10px; z-index: 1000; max-width: 500px; min-width: 300px; text-align: left;">
+            <p><strong>Colophon</strong></p></br>
+            <p>This website was made using <strong>HTML, CSS, and JS.</strong></p>
+            <p>Inspiration from <strong><a href="https://github.com/unveroleone" target="blank" class="footer-link">Leo</a></strong> and <strong><a href="https://github.com/henribredt" target="blank" class="footer-link">Henri.</a></strong></p></br>
+            <p>More coming soon...</p></br>
+            <button onclick="closeColophonPopup()" style="margin-top: 10px; padding: 5px 10px; background: white; color: black; border: none; cursor: pointer;"><strong>Close</strong></button>
+        </div>
+        
+    
+    <canvas id="starCanvas"></canvas>
+
+    <script>
+
+        function openColophonPopup() {
+        document.getElementById("colophonPopup").style.display = "block";
+        }
+        function closeColophonPopup() {
+        document.getElementById("colophonPopup").style.display = "none";
+        }
+       
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = [];
+        const numStars = 600;
+        let lastScrollY = window.scrollY;
+
+        function createStar() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                baseY: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                depth: Math.random() * 5 + 1,
+                speed: Math.random() * 2 + 0.5,
+                opacity: Math.random()
+            };
+        }
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push(createStar());
+        }
+
+        function drawStars(scrollY) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let scrollDirection = scrollY > lastScrollY ? 1 : -1;
+
+            stars.forEach((star, index) => {
+                let parallaxY = star.baseY + scrollDirection * Math.sin(scrollY * 0.009 + index) * star.depth * 5;
+                ctx.beginPath();
+                ctx.arc(star.x, parallaxY, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            });
+
+            lastScrollY = scrollY;
+        }
+
+        function animateStars() {
+            for (let star of stars) {
+                star.opacity += (Math.random() - 0.5) * 0.02;
+                if (star.opacity < 0.1) star.opacity = 0.1;
+                if (star.opacity > 1) star.opacity = 1;
+            }
+        }
+
+        function animateCanvas() {
+            drawStars(window.scrollY);
+            animateStars();
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push(createStar());
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            drawStars(window.scrollY);
+        });
+
+        animateCanvas();
+
+        // --- header Effect ---
+        (function(doc, win) {
+            if (!doc.querySelector) {
+                return alert('Your browser does not support querySelector.');
+            }
+
+            var list = doc.querySelector('ul.content'),
+                all = list.children,
+                i = all.length,
+                html = [];
+
+            while (i--) {
+                html[i] = all[i].innerHTML;
+                all[i].innerHTML = '';
+            }
+
+            var animate = function(i) {
+                var me = all[i],
+                    add = 'dollar',
+                    c = 0, d = 0;
+
+                me.className = add;
+                list.style.marginTop = '-' + ((i + 1) * 25) / 2 + 'px';
+
+                var inty = setInterval(function() {
+                    me.innerHTML = html[i].substr(0, c) + '<span class="typing">|</span>';
+                    c++;
+
+                    if (html[i].length < c) {
+                        clearInterval(inty);
+                        i++;
+
+                        if (all[i]) {
+                            setTimeout(function() {
+                                me.innerHTML = html[i - 1];
+                                animate(i);
+                            }, 300);
+                        }
+                    }
+                }, 60);
+            };
+
+            animate(0);
+        })(document, window);
+    </script>
+
+</body>
+</html>
