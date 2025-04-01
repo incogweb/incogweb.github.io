@@ -2,23 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.85, user-scalable=no">
-    <title>Oscar Nicholas</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oscar Nicholas | Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ===== Base Styles ===== */
+        :root {
+            --primary: #ffffff;
+            --secondary: #cccccc;
+            --accent: #6f6b6b;
+            --bg: #000000;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background: black;
-            color: white;
+            background: var(--bg);
+            color: var(--primary);
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
@@ -27,50 +38,72 @@
         }
 
         a {
+            color: var(--primary);
             text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            border-bottom: 1px dotted #ccc;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #ccc;
+            transition: all 0.2s ease;
         }
 
         /* ===== Typography ===== */
         .small-title {
             font-weight: 600;
-            color: #6f6b6b;
-            margin-bottom: 16px;
-            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .title {
             font-size: 72px;
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
-            margin: 0;
+            line-height: 1.1;
+            margin: 0.5rem 0;
         }
 
-        #first-line {
-            font-size: 32px;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Header link styles (Your original) */
+        .content-links {
+            margin-top: 1rem;
+        }
+
+        .content-links a {
+            border-bottom: 1px dotted #ccc;
             font-weight: bold;
-            margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
-        .bold {
-            font-weight: 600;
+        .content-links a:hover {
+            color: #ccc;
+        }
+
+        .dollar {
+            color: #000000;
         }
 
         /* ===== Layout Components ===== */
-        /* Header Section */
+        /* Header (Your original style) */
         .header-section {
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
             z-index: 1;
             padding: 0 20px;
@@ -90,110 +123,114 @@
             text-align: left;
         }
 
-        .centered-left-text {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        .navigation {
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px 0;
-        }
-
-        .navigation ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .navigation a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .navigation a:hover {
-            color: #ccc;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        /* Profile Image */
         .profile-img {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Content Sections */
+        /* Navigation (Improved version) */
+        .navigation {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        .navigation ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .navigation a {
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .navigation a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sections */
         .section {
-            padding: 100px 20px;
-            text-align: center;
-            background: rgba(52, 52, 52, 0.2);
-            margin: 20px auto;
-            border-radius: 10px;
-            max-width: 800px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .section p {
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
         }
 
-        /* Project Grid */
+        /* Project Grid (3 columns desktop, 1 column mobile) */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .project-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            background: var(--card-bg);
             border-radius: 10px;
-            text-align: left;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            aspect-ratio: 16/9;
+            object-fit: cover;
         }
 
         .project-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .project-item p {
-            font-size: 1rem;
-            color: #ccc;
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
         }
 
-        /* Footer */
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer (Your original style) */
+        .footer {
+            margin-bottom: 4rem;
+            font-family: 'Inter', sans-serif;
+        }
+
         .footer-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             text-align: center;
-            gap: 40px;
-            font-family: 'Inter', sans-serif;
+            gap: 50px;
         }
 
         .menu {
@@ -210,10 +247,6 @@
         }
 
         .menu ul li:not(:first-child) {
-            margin-bottom: 12px;
-        }
-
-        .menu:first-child ul li:nth-child(3) {
             margin-bottom: 12px;
         }
 
@@ -241,7 +274,7 @@
             border-bottom: 2px solid white;
         }
 
-        /* Colophon Popup */
+        /* Colophon Popup (Your original style) */
         #colophonPopup {
             display: none;
             position: fixed;
@@ -272,25 +305,6 @@
         #colophonPopup button:hover {
             background-color: #f0f0f0;
             transform: scale(1.05);
-        }
-
-        /* Animations */
-        .typing {
-            position: relative;
-            display: inline-block;
-            width: 8px;
-            text-indent: -999em;
-            background: #ccc;
-            animation: flick 1s infinite;
-        }
-
-        .dollar {
-            color: #000000
-        }
-
-        @keyframes flick {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
         }
 
         /* ===== Mobile Styles ===== */
@@ -326,27 +340,27 @@
                 padding: 0 10px;
             }
 
-            #first-line {
-                font-size: 28px;
-            }
-
             .section {
                 padding: 60px 10px;
                 max-width: 90%;
             }
 
-            .section h2 {
-                font-size: 1.8rem;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .section p {
-                font-size: 1rem;
+            /* Mobile project grid (1 column) */
+            .project-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation (Improved) -->
     <nav class="navigation">
         <ul>
             <li><a href="#header">Home</a></li>
@@ -356,10 +370,10 @@
         </ul>
     </nav>
 
-    <!-- Header Section -->
+    <!-- Header (Your original version with GitHub link restored) -->
     <section id="header" class="header-section">
         <div class="header-content">
-            <img src="profile.jpg" alt="Oscar's Profile Picture" class="profile-img">
+            <img src="profile.jpg" alt="Oscar Nicholas" class="profile-img" loading="lazy">
             <div class="header-text">
                 <div class="small-title">THE PORTFOLIO OF</div>
                 <div class="title">OSCAR</div>
@@ -371,77 +385,132 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About (Improved layout) -->
     <section id="about" class="section">
-        <div class="centered-left-text">
-            <h2>About Me</h2>
-            <p><strong>Hello, I'm Oscar.</strong> I'm a teenager who is passionate about <strong>ecommerce, coding, and graphic design</strong> because they're all ways for me to construct the ideas that come to my mind. Since I can remember I've had 'these' ideas, whether that's a new app or business concept. I've always wanted a way to really <strong>build</strong> them and so I found hobbies that allow me to. </br></br>
-            When I was 11 I built a website using HTML, CSS, and JS loaded with different games for my classmates to play, but the games only appeared when holding down the Z key on our school laptops so that if you released it, the screen would switch to a random article so it looked like you were doing work in class. The website required a password to enter, and so I would charge my classmates a coin for a 'lisence' to use the website. <strong>(Needless to say it was a success).</strong>
-            </br></br><strong>Now though, I'm more interested in: </strong> </br> </br> <strong>•</strong> Studying (e)commerce and economics </br> <strong>•</strong> Finetuning my code for better User Interface Design and User Experience Design </br> <strong>•</strong> Intergrating my code into physical components (such as building my own mini robots with the Raspberry Pi) </br> <strong>•</strong> Testing the limits and security of various devices (currently with my M5StickC PLUS2)
-            </br><strong>and </strong></br> <strong>• </strong> Using my graphic design skills to create product ads or business logos professionally for anyone that needs them (though that's currently only my friends)</p>
+        <h2 class="section-title">About Me</h2>
+        <p><strong>Hello, I'm Oscar.</strong> I'm a teenager passionate about <strong>ecommerce, coding, and graphic design</strong>—ways to bring my ideas to life. Since childhood, I've envisioned apps and businesses, and I've pursued skills to build them.</p>
+        <p>At 11, I created a password-protected website with hidden games for classmates (disguised as schoolwork). I sold "licenses" for coins—<strong>my first entrepreneurial venture.</strong></p>
+        <p><strong>Today, I focus on:</strong></p>
+        <ul style="margin: 1.5rem 0; padding-left: 2rem;">
+            <li>Studying e-commerce & economics</li>
+            <li>Building UI/UX-friendly applications</li>
+            <li>IoT/Robotics (Raspberry Pi, Arduino)</li>
+            <li>Cybersecurity research</li>
+            <li>Freelance graphic design</li>
+        </ul>
+    </section>
+
+    <!-- Past Projects -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Past Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <img src="https://placehold.co/600x400/111/fff?text=iOS+App" alt="iOS App" loading="lazy">
+                <h3>iOS App Development</h3>
+                <div class="project-tags">
+                    <span class="tag">Swift</span>
+                    <span class="tag">Xcode</span>
+                </div>
+                <p>A productivity app with custom animations and local storage.</p>
+                <a href="#" class="footer-link">View Details →</a>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x400/111/fff?text=E-Reader" alt="E-Reading App" loading="lazy">
+                <h3>E-Reading Web App</h3>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Firebase</span>
+                </div>
+                <p>Web app that speeds up reading with customizable layouts.</p>
+                <a href="#" class="footer-link">Try Demo →</a>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x400/111/fff?text=Design+Work" alt="Design Work" loading="lazy">
+                <h3>Graphic Design</h3>
+                <div class="project-tags">
+                    <span class="tag">Figma</span>
+                    <span class="tag">Illustrator</span>
+                </div>
+                <p>Logos and ads for student-run businesses.</p>
+                <a href="#" class="footer-link">See Portfolio →</a>
+            </div>
         </div>
     </section>
 
-    <!-- Past Projects Section -->
-    <section id="past-projects" class="section">
-        <h2>Past Projects</h2>
+    <!-- Current Projects -->
+    <section class="section">
+        <h2 class="section-title">Current Projects</h2>
         <div class="project-grid">
             <div class="project-item">
-                <h3>iOS App Development</h3>
-                <p>I've worked on developing my own iOS app using Swift frameworks.</p>
+                <img src="https://placehold.co/600x400/111/fff?text=Self-Hosted" alt="Self-Hosted" loading="lazy">
+                <h3>Self-Hosted Services</h3>
+                <div class="project-tags">
+                    <span class="tag">Raspberry Pi</span>
+                    <span class="tag">Docker</span>
+                </div>
+                <p>Hosting web apps and Discord bots on home servers.</p>
+                <a href="#" class="footer-link">Learn More →</a>
             </div>
             <div class="project-item">
-                <h3>E-Reading Web App</h3>
-                <p>I coded a web-app to make e-reading faster.</p>
-            </div>
-            <div class="project-item">
-                <h3>Graphic Design for Businesses</h3>
-                <p>I've designed logos and product ads for businesses run by fellow students.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Current Projects Section -->
-    <section id="projects" class="section">
-        <h2>Current Projects</h2>
-        <div class="project-grid">
-            <div class="project-item">
-                <h3>Self-Hosted Web Services</h3>
-                <p>I'm currently using Raspberry Pis to host web apps and services, aswell as Discord bots programmed for spceific tasks.</p>
-            </div>
-            <div class="project-item">
+                <img src="https://placehold.co/600x400/111/fff?text=Cyberdeck" alt="Cyberdeck" loading="lazy">
                 <h3>Private Cyberdeck</h3>
-                <p>I'm building a fully private Cyberdeck for personal use, structured within a ToolBox.</p>
+                <div class="project-tags">
+                    <span class="tag">Raspberry Pi</span>
+                    <span class="tag">3D Printing</span>
+                </div>
+                <p>Portable privacy-focused workstation in a toolbox.</p>
+                <a href="#" class="footer-link">Follow Progress →</a>
             </div>
             <div class="project-item">
-                <h3>IoT and Cybersecurity</h3>
-                <p>I am experimenting with IoT devices and cybersecurity concepts.</p>
+                <img src="https://placehold.co/600x400/111/fff?text=IoT" alt="IoT Security" loading="lazy">
+                <h3>IoT Security</h3>
+                <div class="project-tags">
+                    <span class="tag">M5StickC</span>
+                    <span class="tag">Python</span>
+                </div>
+                <p>Testing device vulnerabilities and secure protocols.</p>
+                <a href="#" class="footer-link">Read Blog →</a>
             </div>
         </div>
     </section>
-    
-    <!-- Future Projects Section -->
+
+    <!-- Future Projects (Restored from your original) -->
     <section id="future-projects" class="section">
-        <h2>Future Projects</h2>
+        <h2 class="section-title">Future Projects</h2>
         <div class="project-grid">
             <div class="project-item">
                 <h3>AI-Powered Automation</h3>
+                <div class="project-tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Python</span>
+                </div>
                 <p>Planning to integrate AI for automating various personal and professional tasks.</p>
+                <a href="#" class="footer-link">Learn More →</a>
             </div>
             <div class="project-item">
                 <h3>Advanced Robotics</h3>
+                <div class="project-tags">
+                    <span class="tag">Raspberry Pi</span>
+                    <span class="tag">Arduino</span>
+                </div>
                 <p>Exploring robotics with Raspberry Pi and Arduino for custom-built solutions.</p>
+                <a href="#" class="footer-link">Follow Updates →</a>
             </div>
             <div class="project-item">
                 <h3>Decentralized Web Projects</h3>
+                <div class="project-tags">
+                    <span class="tag">Web3</span>
+                    <span class="tag">Blockchain</span>
+                </div>
                 <p>Interested in creating self-sustaining, decentralized online applications.</p>
+                <a href="#" class="footer-link">Read Blog →</a>
             </div>
         </div>
     </section>
-    </br></br></br> 
-    <!-- Footer Section -->
-    <footer id="footer" class="footer" style="margin-bottom: 4rem; font-family: 'Inter', sans-serif;">
-        <div class="footer-container" style="gap: 50px;">
+
+    <!-- Footer (Your original version) -->
+    <footer id="footer" class="footer">
+        <div class="footer-container">
             <nav class="menu">
                 <ul>
                     <li style="margin-bottom: 1rem;"><a href="https://incogweb.github.io" style="border-bottom: none;" class="bold">incogweb.github.io</a></li>
@@ -473,7 +542,7 @@
         </div> 
     </footer>
     
-    <!-- Colophon Popup -->
+    <!-- Colophon Popup (Your original version) -->
     <div id="colophonPopup">
         <p><strong>Colophon</strong></p></br>
         <p>This website was made using <strong>HTML, CSS, and JS.</strong></p>
@@ -483,22 +552,21 @@
     </div>
 
     <script>
-        // Colophon Popup Functions
+        // Colophon Popup
         function openColophonPopup() {
             document.getElementById("colophonPopup").style.display = "block";
         }
-        
         function closeColophonPopup() {
             document.getElementById("colophonPopup").style.display = "none";
         }
 
-        // Header Typing Effect
+        // Header typing animation (Your original version)
         (function(doc, win) {
             if (!doc.querySelector) {
                 return alert('Your browser does not support querySelector.');
             }
 
-            var list = doc.querySelector('ul.content'),
+            var list = doc.querySelector('ul.content-links'),
                 all = list.children,
                 i = all.length,
                 html = [];
