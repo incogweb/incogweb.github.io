@@ -140,7 +140,7 @@
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
         }
 
         .navigation ul {
@@ -148,12 +148,15 @@
             justify-content: center;
             gap: 2rem;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .navigation a {
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 4px;
+            font-size: 1rem;
         }
 
         .navigation a:hover {
@@ -331,9 +334,19 @@
                 padding: 0 10px;
             }
 
+            /* Updated navigation for mobile */
+            .navigation {
+                padding: 0.8rem 0;
+            }
+            
+            .navigation ul {
+                gap: 0.5rem;
+                padding: 0 10px;
+            }
+
             .navigation a {
-                font-size: 16px;
-                padding: 8px 16px;
+                font-size: 14px;
+                padding: 6px 12px;
             }
 
             .header-section {
@@ -355,6 +368,22 @@
                 max-width: 400px;
                 margin-left: auto;
                 margin-right: auto;
+            }
+        }
+
+        /* Additional adjustment for very small screens */
+        @media (max-width: 480px) {
+            .navigation ul {
+                gap: 0.3rem;
+            }
+            
+            .navigation a {
+                font-size: 13px;
+                padding: 5px 8px;
+            }
+            
+            .title {
+                font-size: 42px;
             }
         }
     </style>
